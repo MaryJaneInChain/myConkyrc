@@ -1,0 +1,84 @@
+conky.config={
+	background=true,
+	own_window=true,
+	own_window_transparent=true,
+	own_window_type="override",
+
+	alignment="top_right",
+	
+	gap_y=50,
+	gap_x=50,
+
+	cpu_avg_samples=2,
+	net_avg_samples=2,
+
+	out_to_console=false,
+
+	use_xft=true,
+	font="文泉驿等宽正黑:size=9",
+	xftalpha=1,
+
+	update_interval=1,
+
+	double_buffer=true,
+
+	draw_shades=true,
+	draw_outline=true,
+	draw_borders=false,
+
+	default_color="black",
+	default_outline_color="ffffe0",
+
+	minimum_width=200,
+	minimum_height=5,
+
+	maximum_width=400,
+
+	format_human_readable=true,
+}
+
+
+conky.text=[[
+$alignc${font 文泉驿等宽正黑:size=11}$sysname${font}
+
+架构: $alignr$machine
+内核版本: $alignr$kernel
+运行时间: $alignr$uptime
+温度: ${alignr}${acpitemp} ℃
+
+CPU: ${alignr}${freq dyn} MHz
+进程数: ${alignr}$processes ($running_processes 活动中)
+Load: ${alignr}$loadavg
+
+CPU 1 ${alignr}${cpu cpu1}%
+${cpubar 3 cpu1}
+CPU 2 ${alignr}${cpu cpu2}%
+${cpubar 3 cpu2}
+CPU 3 ${alignr}${cpu cpu3}%
+${cpubar 3 cpu3}
+CPU 4 ${alignr}${cpu cpu4}%
+${cpubar 3 cpu4}
+
+内存 ${alignr}$mem / $memmax ($memperc%)
+${membar 3}
+交换区 ${alignr}$swap / $swapmax ($swapperc%)
+${swapbar 3}
+
+
+$alignc${font 文泉驿等宽正黑:size=11}文件系统${font}
+
+Root: ${fs_type /} ${alignr}${fs_used /} / ${fs_size /}
+${fs_bar 3 /}
+Home: ${fs_type /home} ${alignr}${fs_used /home} / ${fs_size /home}
+${fs_bar 3 /home}${if_mounted /mnt/外部存储器}
+外部存储器: ${fs_type /mnt/外部存储器} ${alignr}${fs_used /mnt/外部存储器} / ${fs_size /mnt/外部存储器}
+${fs_bar 3 /mnt/外部存储器}
+${endif}
+
+
+$alignc${font 文泉驿等宽正黑:size=11}网络${font}
+
+下载 ${downspeed wlp6s0} ${alignr}上传 ${upspeed wlp6s0}
+${downspeedgraph wlp6s0 25,90} ${alignr}${upspeedgraph wlp6s0 25,90}
+总流量 ${totaldown wlp6s0} ${alignr}总流量 ${totalup wlp6s0}
+]]
